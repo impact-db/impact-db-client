@@ -1,0 +1,32 @@
+{
+  "name": "impact_db_chakra",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.3",
+    "@emotion/react": "^11.8.0",
+    "@emotion/styled": "^11.8.0",
+    "@fontsource/lato": "^4.5.9",
+    "@fontsource/montserrat": "^4.5.12",
+    "@tanstack/react-query": "^4.3.9",
+    "@tanstack/react-query-devtools": "^4.3.9",
+    "firebase": "^9.6.7",
+    "formik": "^2.2.9",
+    "framer-motion": "^6.2.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-dropzone": "^12.0.4",
+    "react-router-dom": "^6.2.1",
+    "react-router-hash-link": "^2.4.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^1.0.7",
+    "vite": "^2.8.0"
+  }
+}

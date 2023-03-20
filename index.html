@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+  /* do not show error message by default */
+  #error-message {
+    display: none;
+  }
+</style>
+
+<script type="module">
+
+  // if there are no credentials then show the error message
+  document.addEventListener("DOMContentLoaded", () => {
+    const errorMessage = document.getElementById('error-message')
+    if (!import.meta.env.VITE_FIREBASE_CONFIG) {
+      errorMessage.style.display = 'inline'
+    }
+  })
+</script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- icon information -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/src/meta/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/src/meta/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/src/meta/favicon-16x16.png">
+  <link rel="manifest" href="/src/meta/site.webmanifest">
+  <link rel="mask-icon" href="/src/meta/safari-pinned-tab.svg" color="#1B202B">
+  <meta name="msapplication-TileColor" content="#1B202B">
+  <meta name="theme-color" content="#1B202B">
+
+  <!-- seo information -->
+  <meta name="description"
+    content="ImpactDB: The Industrial Microbiology Publication and AI Crowd-sourced Toolbox. Where synthetic biologists collaborate." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ImpactDB: The Industrial Microbiology Publication and AI Crowd-sourced Toolbox" />
+  <meta property="og:description" content="Where synthetic biologists collaborate" />
+  <meta property="og:url" content="https://impact-database.com/" />
+  <meta property="og:site_name" content="ImpactDB" />
+  <meta property="og:image"
+    content="https://firebasestorage.googleapis.com/v0/b/impact-db.appspot.com/o/dnaLogo.svg?alt=media&token=eaf9a857-eae1-48a2-983e-1ffdd027139b" />
+  <meta property="og:locale" content="en_US" />
+
+  <title>ImpactDB</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <p id="error-message">
+    You need to have the Firebase credentials in a .env file with the variable name VITE_FIREBASE_CONFIG.
+  </p>
+</body>
+
+</html>
