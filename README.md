@@ -19,10 +19,10 @@ This code was written and tested with node version 14.16.1 and npm version 8.4.0
 
 ## Installation
 Copy code to local environment
->git clone https://github.com/garrettroell/impact-db.git
+>git clone https://github.com/impact-db/impact-db-client.git
 
 Move into the project's root directory
->cd impact-db
+>cd impact-db-client
 
 Install Dependancies
 >npm install
