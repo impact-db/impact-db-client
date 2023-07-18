@@ -263,6 +263,9 @@ function getSpeciesToCollectionMapping() {
 
 // get the collection name in firebase from the species name in the url
 function speciesToCollectionName(species) {
+  // if no species is provided, return an empty string to prevent an error
+  if (!species) return "";
+
   const speciesToCollectionMapping = getSpeciesToCollectionMapping();
   return speciesToCollectionMapping[species.toLowerCase()];
 }

@@ -39,7 +39,7 @@ const StrainList = ({ data, page }) => {
       newDisplayData.sort(function (a, b) {
         return parseFloat(b.titer) < parseFloat(a.titer) ? 1 : -1;
       });
-    } else if (dataType === "maximumRate" && order === "descending") {
+    } else if (dataType === "rate" && order === "descending") {
       newDisplayData.sort(function (a, b) {
         return parseFloat(a.maximumRate) < parseFloat(b.maximumRate) ? 1 : -1;
       });
@@ -85,7 +85,7 @@ const StrainList = ({ data, page }) => {
       </Stack>
       <Spacer h="30px" />
       {page === "paper" && <AddStrainButton />}
-      
+
       {displayData.map((strain, index) => {
         return (
           <StrainListItem
