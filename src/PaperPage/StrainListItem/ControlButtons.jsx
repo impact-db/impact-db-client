@@ -2,7 +2,7 @@ import { HStack } from "@chakra-ui/react";
 import DuplicateStrainButton from "../StrainListItemButtons/DuplicateStrainButton";
 import ExpandStrainButton from "../StrainListItemButtons/ExpandStrainButton";
 
-const ControlButtons = ({ strain, onHomePage, showDetails }) => {
+const ControlButtons = ({ strain, onHomePage, showDetails, page}) => {
   return (
     <HStack
       w="68px"
@@ -12,8 +12,8 @@ const ControlButtons = ({ strain, onHomePage, showDetails }) => {
       align="center"
     >
       {/* duplicate result button */}
-      <DuplicateStrainButton strain={strain} onHomePage={onHomePage} />
-
+      {page === "paper" &&<DuplicateStrainButton strain={strain} onHomePage={onHomePage} />}
+      
       {/* show/hide details button */}
       <ExpandStrainButton showDetails={showDetails} />
     </HStack>

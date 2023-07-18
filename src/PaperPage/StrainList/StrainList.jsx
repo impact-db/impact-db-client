@@ -93,6 +93,7 @@ const StrainList = ({ data, page }) => {
             strain={strain}
             dataType={dataType}
             isLargerThan700={isLargerThan700}
+            page = {page}
           />
         );
       })}
