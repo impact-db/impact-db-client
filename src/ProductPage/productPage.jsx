@@ -80,7 +80,7 @@ const ProductPage = () => {
                 Product: {id}
               </Heading>
             </HStack>
-            <StrainList data={data} />
+            <StrainList data={data} page="product"/>
           </Box>
         </Box>
       </>

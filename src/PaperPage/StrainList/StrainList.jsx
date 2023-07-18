@@ -17,7 +17,7 @@ import {
   speciesToCollectionName,
 } from "../../Helpers/databaseHelpers";
 
-const StrainList = ({ data }) => {
+const StrainList = ({ data, page }) => {
   const [displayData, setDisplayData] = useState([]);
   const [dataType, setDataType] = useState("titer");
   const [order, setOrder] = useState("descending");
@@ -84,7 +84,8 @@ const StrainList = ({ data }) => {
         </HStack>
       </Stack>
       <Spacer h="30px" />
-      <AddStrainButton />
+      {page === "paper" && <AddStrainButton />}
+      
       {displayData.map((strain, index) => {
         return (
           <StrainListItem

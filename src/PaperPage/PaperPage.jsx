@@ -140,7 +140,7 @@ const PaperPage = () => {
             <Text mt="20px" fontSize="16px">
               {paper.authors}
             </Text>
-            <StrainList data={paper} />
+            <StrainList data={paper} page="paper"/>
             <CommentsSection paper={paper} />
           </Box>
         </Box>
