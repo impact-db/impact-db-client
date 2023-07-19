@@ -302,7 +302,6 @@ export {
   getProductArray,
   getDailyStatsArray,
   haveSameData,
-  getCollectionList,
   getSpeciesToCollectionMapping,
   speciesToCollectionName,
 };
