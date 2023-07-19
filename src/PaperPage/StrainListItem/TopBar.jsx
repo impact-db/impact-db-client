@@ -33,7 +33,7 @@ const TopBar = ({
     default:
       console.log("unknown data type");
   }
-
+  
   return (
     <Stack
       direction={rowOrCol}
@@ -96,6 +96,15 @@ const TopBar = ({
               <EditStrainButton strain={strain} />
               <Text>|</Text>
               <DeleteStrainButton strain={strain} />
+            </HStack>
+          )}
+          {page === "product" && (
+            <HStack h="20px" w="150px">
+              <Link to={"/paper/" + convertToSlug(strain.species) + "/" + convertToSlug(strain.paperSlug)}>
+              <Text _hover={{ textDecoration: "underline" }}>
+                Link to Paper
+              </Text>
+            </Link>
             </HStack>
           )}
 
