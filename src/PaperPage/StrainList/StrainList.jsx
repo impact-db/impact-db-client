@@ -17,13 +17,7 @@ import {
   speciesToCollectionName,
 } from "../../Helpers/databaseHelpers";
 
-const StrainList = () => {
-  // get id from url parameters
-  const params = useParams();
-  const slug = params?.slug;
-  const species = params?.species;
-  const collectionName = speciesToCollectionName(species);
-
+const StrainList = ({ data, page }) => {
   const [displayData, setDisplayData] = useState([]);
   const [dataType, setDataType] = useState("titer");
   const [order, setOrder] = useState("descending");
@@ -31,24 +25,7 @@ const StrainList = () => {
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
   const rowOrCol = isLargerThan700 ? "row" : "column-reverse";
 
-  // get either cached or new paperArray data
-  const { data } = useQuery(["paperArray", collectionName], ({ queryKey }) =>
-    getPaperArray(queryKey[1])
-  );
-
-  // set the value of the paper based on cached or fetched data
-  let paperArray;
-  let paper = {};
-  if (data) {
-    paperArray = data;
-
-    paper = "not found";
-    paperArray.forEach((_paper) => {
-      if (_paper.slug === slug) {
-        paper = _paper;
-      }
-    });
-  }
+  let paper = data;
 
   console.log(paper.experimentalData);
 
@@ -62,7 +39,7 @@ const StrainList = () => {
       newDisplayData.sort(function (a, b) {
         return parseFloat(b.titer) < parseFloat(a.titer) ? 1 : -1;
       });
-    } else if (dataType === "maximumRate" && order === "descending") {
+    } else if (dataType === "rate" && order === "descending") {
       newDisplayData.sort(function (a, b) {
         return parseFloat(a.maximumRate) < parseFloat(b.maximumRate) ? 1 : -1;
       });
@@ -107,7 +84,8 @@ const StrainList = () => {
         </HStack>
       </Stack>
       <Spacer h="30px" />
-      <AddStrainButton />
+      {page === "paper" && <AddStrainButton />}
+
       {displayData.map((strain, index) => {
         return (
           <StrainListItem
@@ -115,6 +93,7 @@ const StrainList = () => {
             strain={strain}
             dataType={dataType}
             isLargerThan700={isLargerThan700}
+            page = {page}
           />
         );
       })}

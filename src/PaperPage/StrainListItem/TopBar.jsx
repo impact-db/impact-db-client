@@ -13,6 +13,7 @@ const TopBar = ({
   creatorLoggedIn,
   onHomePage,
   isLargerThan700,
+  page
 }) => {
   let navigate = useNavigate();
 
@@ -32,7 +33,7 @@ const TopBar = ({
     default:
       console.log("unknown data type");
   }
-
+  
   return (
     <Stack
       direction={rowOrCol}
@@ -72,6 +73,7 @@ const TopBar = ({
             onHomePage={onHomePage}
             showDetails={showDetails}
             setShowDetails={setShowDetails}
+            page = {page}
           />
         )}
       </HStack>
@@ -89,11 +91,20 @@ const TopBar = ({
         {/* button section */}
         <HStack>
           {/* edit and delete buttons */}
-          {creatorLoggedIn && (
+          {creatorLoggedIn && page === "paper" && (
             <HStack h="20px" w="150px">
               <EditStrainButton strain={strain} />
               <Text>|</Text>
               <DeleteStrainButton strain={strain} />
+            </HStack>
+          )}
+          {page === "product" && (
+            <HStack h="20px" w="150px">
+              <Link to={"/paper/" + convertToSlug(strain.species) + "/" + convertToSlug(strain.paperSlug)}>
+              <Text _hover={{ textDecoration: "underline" }}>
+                Link to Paper
+              </Text>
+            </Link>
             </HStack>
           )}
 
@@ -104,6 +115,7 @@ const TopBar = ({
               onHomePage={onHomePage}
               showDetails={showDetails}
               setShowDetails={setShowDetails}
+              page = {page}
             />
           )}
         </HStack>

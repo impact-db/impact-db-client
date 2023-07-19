@@ -9,6 +9,7 @@ const StrainListItem = ({
   dataType,
   isLargerThan700,
   onHomePage = false,
+  page
 }) => {
   const currentUser = useFirebaseAuthentication();
   const [showDetails, setShowDetails] = useState(onHomePage ? true : false);
@@ -50,6 +51,7 @@ const StrainListItem = ({
           creatorLoggedIn={creatorLoggedIn}
           onHomePage={onHomePage}
           isLargerThan700={isLargerThan700}
+          page={page}
         />
         {/* if the detais are open then show the details */}
         {showDetails && (

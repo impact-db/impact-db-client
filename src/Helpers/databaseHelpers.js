@@ -35,6 +35,22 @@ async function getPaperObject(collectionName) {
   return paperObject;
 }
 
+// get a list of fermentation results from all species for a single product
+async function getProductResults(product) {
+  try {
+    const productResultsUrl = `https://us-central1-impact-db.cloudfunctions.net/getProductResults/${product}`;
+    // console.log("product results url is", productResultsUrl);
+    const response = await fetch(productResultsUrl);
+    // console.log("response is", response);
+    const data = await response.json();
+    console.log("data is", data);
+    return data;
+  } catch (e) {
+    console.log("error occured:", e);
+    return [];
+  }
+}
+
 async function addPaper(collectionName, paper) {
   // get the object of paper lists as it is currently stored in the database
   let paperObject = await getPaperObject(collectionName);
@@ -263,6 +279,9 @@ function getSpeciesToCollectionMapping() {
 
 // get the collection name in firebase from the species name in the url
 function speciesToCollectionName(species) {
+  // if no species is provided, return an empty string to prevent an error
+  if (!species) return "";
+
   const speciesToCollectionMapping = getSpeciesToCollectionMapping();
   return speciesToCollectionMapping[species.toLowerCase()];
 }
@@ -270,6 +289,7 @@ function speciesToCollectionName(species) {
 export {
   getPaperArray,
   getPaperObject,
+  getProductResults,
   addPaper,
   updatePaper,
   deletePaper,
