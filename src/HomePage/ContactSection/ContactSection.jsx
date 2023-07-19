@@ -8,14 +8,7 @@ import {
 
 const ContactSection = () => {
   return (
-    <VStack
-      id="about"
-      w="100vw"
-      px="20px"
-      py="40px"
-      align="center"
-      bg={useColorModeValue("gray.200", "gray.900")}
-    >
+    <VStack id="about" w="100vw" px="20px" py="40px" align="center">
       <VStack w="100%" maxW="1000px" m="auto" px="20px">
         {/* <Spacer minH="30px" /> */}
         <Heading id="contact" textAlign="center">

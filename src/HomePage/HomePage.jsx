@@ -10,6 +10,7 @@ import MLToolsSection from "./MLToolsSection/MLToolsSection";
 import ContactSection from "./ContactSection/ContactSection";
 import DatabaseSection from "./DatabaseSection/DatabaseSection";
 import ChartSection from "./ChartSection/ChartSection";
+import InventorySection from "./InventorySection/InventorySection";
 
 const HomePage = () => {
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
@@ -104,7 +105,8 @@ const HomePage = () => {
         )}
       />
 
-      <ChartSection />
+      {/* Inventory Section */}
+      <InventorySection />
 
       {/* gradient transition */}
       <Box
@@ -116,8 +118,8 @@ const HomePage = () => {
         )}
       />
 
-      {/* Contact section */}
-      <ContactSection />
+      {/* chart section */}
+      <ChartSection />
 
       {/* gradient transition */}
       <Box
@@ -128,6 +130,12 @@ const HomePage = () => {
           "linear(to-b, gray.900, transparent)"
         )}
       />
+
+      {/* Contact section */}
+      <ContactSection />
+
+      {/* spacer */}
+      <Box h="100px" w="100%" />
     </>
   );
 };
