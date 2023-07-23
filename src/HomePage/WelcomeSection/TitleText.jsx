@@ -1,5 +1,7 @@
 import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react";
 import WelcomeSectionButton from "./WelcomeSectionButton";
+import ReportIssueButton from "./ReportIssueButton";
+import ReportButtonContainer from "./ReportIssueButtonContainer";
 
 const TitleText = ({ isLargerThan800 }) => {
   return (
@@ -37,6 +39,10 @@ const TitleText = ({ isLargerThan800 }) => {
             Explore ML Tools
           </Button>
         </WelcomeSectionButton>
+
+        <ReportButtonContainer>
+          <ReportIssueButton paper={"General"} /> {/* Make sure to pass the 'paper' prop here */}
+        </ReportButtonContainer>
         {/* </a> */}
       </Stack>
     </Stack>
