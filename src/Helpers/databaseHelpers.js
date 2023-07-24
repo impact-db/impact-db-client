@@ -35,6 +35,20 @@ async function getPaperObject(collectionName) {
   return paperObject;
 }
 
+async function getInventory() {
+  let inventoryList = {};
+
+  // get the molecular inventory from firebase
+  let querySnapshot = await getDocs(collection(db, "molecular-inventory"));
+
+  // get this list of molecule data
+  querySnapshot.docs.forEach((item) => {
+    inventoryList = item.data().moleculeList;
+  });
+
+  return inventoryList;
+}
+
 // get a list of fermentation results from all species for a single product
 async function getProductResults(product) {
   try {
@@ -289,6 +303,7 @@ function speciesToCollectionName(species) {
 export {
   getPaperArray,
   getPaperObject,
+  getInventory,
   getProductResults,
   addPaper,
   updatePaper,
