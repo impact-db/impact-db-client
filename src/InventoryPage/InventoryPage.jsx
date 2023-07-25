@@ -65,22 +65,25 @@ const InventoryPage = () => {
               </Link>
             </Box>
 
-            <Heading
-              fontSize="20px"
-              mt="5px"
-              mb="20px"
-              color="green.600">
-                Current Inventory
-            </Heading>
+            
 
-            <HStack mt="5px"mb="20px">
-              <Button bg="green.100"color="gray.800" size="sm" onClick={() => downloadInventoryCSV(data)}>
-                Download Data
-              </Button>
-              <Button color="gray.800" size="sm" onClick={onOpen}>
-                Report an Issue
-              </Button>
+            <HStack w="full" justifyContent="space-between" mt="5px"mb="20px">
+              <Heading
+                fontSize="20px"
+                mt="5px"
+                mb="20px"
+                color="green.600">
+                  Current Inventory
+              </Heading>
 
+              <HStack>
+                <Button bg="green.100"color="gray.800" size="sm" onClick={() => downloadInventoryCSV(data)}>
+                  Download Data
+                </Button>
+                <Button color="gray.800" size="sm" onClick={onOpen}>
+                  Report an Issue
+                </Button>
+              </HStack>
               <Modal
                 isCentered
                 isOpen={isOpen}
