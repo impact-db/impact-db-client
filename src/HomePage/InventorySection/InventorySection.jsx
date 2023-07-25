@@ -19,9 +19,9 @@ const InventorySection = () => {
           approaches for biological processes.
         </Text>
         <Spacer minH="4px" />
-        <a href="https://garrettroell.com/molecular-inventory">
+        <a href="/inventory">
           <Button size="lg" fontSize="16px" bg="green.100" color="gray.800">
-            Download the inventory now
+            View the current inventory
           </Button>
         </a>
       </VStack>

@@ -10,10 +10,10 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import { useParams } from "react-router-dom";
-import { loginPopup, useFirebaseAuthentication } from "../../Auth/auth";
-import { sendAdminEmail, sendUserEmail } from "../../Helpers/emailHelpers";
+import { loginPopup, useFirebaseAuthentication } from "../Auth/auth";
+import { sendAdminEmail, sendUserEmail } from "../Helpers/emailHelpers";
 
-const ReportIssueFormHomepage = ({ onClose }) => {
+const ReportIssueFormInventory = ({ onClose }) => {
   // get the current user
   const currentUser = useFirebaseAuthentication();
   const toast = useToast();
@@ -49,7 +49,8 @@ const ReportIssueFormHomepage = ({ onClose }) => {
               <div>
                 <p>Subject: ${values.subject}</p>
                 <p>Message: ${values.message}</p>
-                <p>No specific paper. General issue.</p>
+                <p>No specific paper. Issue with Molecular Inventory page.</p>
+                <p>Link: https://impact-database.com/inventory</p>
               </div>
             `,
           });
@@ -71,7 +72,8 @@ const ReportIssueFormHomepage = ({ onClose }) => {
                 <p>We have recieved your feedback, and will address your concerns.</p>
                 <p>Subject: ${values.subject}</p>
                 <p>Message: ${values.message}</p>
-                <p>No specific paper. General issue.</p>
+                <p>No specific paper. Issue with Molecular Inventory page.</p>
+                <p>Link: https://impact-database.com/inventory</p>
               </div>
             `,
           });
@@ -134,4 +136,4 @@ const ReportIssueFormHomepage = ({ onClose }) => {
   );
 };
 
-export default ReportIssueFormHomepage;
+export default ReportIssueFormInventory;

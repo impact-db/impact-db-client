@@ -36,7 +36,7 @@ const ReportIssueButton = ({ paper }) => {
           <ModalHeader>Report an issue</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <ReportIssueFormHomepage paper={paper} onClose={onClose} />
+            <ReportIssueFormHomepage onClose={onClose} />
           </ModalBody>
         </ModalContent>
       </Modal>
