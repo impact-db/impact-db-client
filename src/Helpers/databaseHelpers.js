@@ -6,7 +6,6 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { saveAs } from 'file-saver';
 
 async function getPaperArray(collectionName) {
   console.log("running get paper array");
@@ -37,17 +36,52 @@ async function getPaperObject(collectionName) {
 }
 
 async function getInventory() {
-  let inventoryList = {};
+  let inventory = {};
 
   // get the molecular inventory from firebase
   let querySnapshot = await getDocs(collection(db, "molecular-inventory"));
 
   // get this list of molecule data
   querySnapshot.docs.forEach((item) => {
-    inventoryList = item.data().moleculeList;
+    inventory.moleculeList = item.data().moleculeList;
+    inventory.comments = item.data().comments;
   });
 
-  return inventoryList;
+  return inventory;
+}
+
+// add a comment to the molecular inventory
+async function addInventoryComment(moleculeList, oldComments, comment) {
+  try {
+    // make an updated list of comments array with the new comment
+    const updatedComments = [...oldComments, comment];
+
+    // save the comments to the database
+    await setDoc(doc(db, "molecular-inventory", "inventory"), {
+      moleculeList: moleculeList,
+      comments: updatedComments,
+    });
+  } catch (e) {
+    console.log("error occured:", e);
+  }
+}
+
+// delete inventory comment
+async function deleteInventoryComment(moleculeList, oldComments, comment) {
+  try {
+    // make an updated list of comments array with the new comment
+    const updatedComments = oldComments.filter(
+      (_comment) => !haveSameData(comment, _comment)
+    );
+
+    // save the comments to the database
+    await setDoc(doc(db, "molecular-inventory", "inventory"), {
+      moleculeList: moleculeList,
+      comments: updatedComments,
+    });
+  } catch (e) {
+    console.log("error occured:", e);
+  }
 }
 
 // get a list of fermentation results from all species for a single product
@@ -306,7 +340,8 @@ const columnMap = {
   Product: "Product",
   num_yarrowia_results: "Number of results in Yarrowia Database",
   molecularWeight: "Estimated M.W. of products",
-  deltaGFormation: "Product Delta G of formation (obtained from equilibrator calculator: https://equilibrator.weizmann.ac.il/) pH=7, pMg=3.0, IS= 0.25M",
+  deltaGFormation:
+    "Product Delta G of formation (obtained from equilibrator calculator: https://equilibrator.weizmann.ac.il/) pH=7, pMg=3.0, IS= 0.25M",
   precursors: "Central carbon precursor",
   precursorDeltaGFormation: "Central carbon precursor Delta G of formation",
   numberEnzymaticSteps: "Pathway enzymatic steps",
@@ -324,23 +359,23 @@ const columnMap = {
 // function for converting the data to csv
 function convertToCSV(data) {
   if (!data || !data.length) {
-    return '';
+    return "";
   }
 
   const csvRows = [];
-  
+
   const headers = Object.keys(columnMap);
-  csvRows.push(headers.map(header => columnMap[header]).join(','));
-  
+  csvRows.push(headers.map((header) => columnMap[header]).join(","));
+
   for (const row of data) {
-    const values = headers.map(header => {
-      const escaped = (''+row[header]).replace(/"/g, '\\"');
+    const values = headers.map((header) => {
+      const escaped = ("" + row[header]).replace(/"/g, '\\"');
       return `"${escaped}"`;
     });
-    csvRows.push(values.join(','));
+    csvRows.push(values.join(","));
   }
-  
-  return csvRows.join('\n');
+
+  return csvRows.join("\n");
 }
 
 // function for downloading the fetched data to user's computer in csv file
@@ -349,12 +384,12 @@ function downloadInventoryCSV(data) {
   if (!csvData) {
     return;
   }
-  const blob = new Blob([csvData], { type: 'text/csv' });
+  const blob = new Blob([csvData], { type: "text/csv" });
   const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.setAttribute('hidden','');
-  a.setAttribute('href', url);
-  a.setAttribute('download', 'molecular-inventory.csv');
+  const a = document.createElement("a");
+  a.setAttribute("hidden", "");
+  a.setAttribute("href", url);
+  a.setAttribute("download", "molecular-inventory.csv");
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -364,6 +399,8 @@ export {
   getPaperArray,
   getPaperObject,
   getInventory,
+  addInventoryComment,
+  deleteInventoryComment,
   getProductResults,
   addPaper,
   updatePaper,

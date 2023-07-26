@@ -27,6 +27,7 @@ import { useQuery } from "@tanstack/react-query";
 import ReportIssueFormInventory from "./ReportIssueForm";
 import { Link } from "react-router-dom";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import CommentsSection from "./CommentsSection/CommentsSection";
 
 const InventoryPage = () => {
   let headingColor = useColorModeValue("green.600", "green.100");
@@ -35,6 +36,7 @@ const InventoryPage = () => {
   const { isLoading, data } = useQuery(["inventory"], ({ queryKey }) =>
     getInventory()
   );
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   // handle loading state
   if (isLoading) {
@@ -54,7 +56,8 @@ const InventoryPage = () => {
   }
   // handle display data state
   else {
-    console.log("inventory data is", data);
+    const { moleculeList, comments } = data;
+
     return (
       <>
         <NavBar />
@@ -83,7 +86,7 @@ const InventoryPage = () => {
                   bg="green.100"
                   color="gray.800"
                   size="sm"
-                  onClick={() => downloadInventoryCSV(data)}
+                  onClick={() => downloadInventoryCSV(moleculeList)}
                 >
                   Download Data
                 </Button>
@@ -136,7 +139,7 @@ const InventoryPage = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {data.map((item, index) => (
+                {moleculeList.map((item, index) => (
                   <Tr key={index}>
                     <Td fontSize="sm">{item.Product}</Td>
                     <Td fontSize="sm">{item.num_yarrowia_results}</Td>
@@ -158,6 +161,9 @@ const InventoryPage = () => {
                 ))}
               </Tbody>
             </Table>
+          </Box>
+          <Box maxW="900px" pl="20px" mt="40px">
+            <CommentsSection moleculeList={moleculeList} comments={comments} />
           </Box>
         </Box>
       </>
