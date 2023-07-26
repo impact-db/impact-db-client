@@ -54,7 +54,6 @@ const TitleText = ({ isLargerThan800 }) => {
 
         <ReportButtonContainer>
           <ReportIssueButton paper={"General"} />{" "}
-          {/* Make sure to pass the 'paper' prop here */}
         </ReportButtonContainer>
         {/* </a> */}
       </Stack>

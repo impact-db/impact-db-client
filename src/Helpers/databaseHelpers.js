@@ -6,6 +6,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { saveAs } from 'file-saver';
 
 async function getPaperArray(collectionName) {
   console.log("running get paper array");
@@ -33,6 +34,20 @@ async function getPaperObject(collectionName) {
   });
 
   return paperObject;
+}
+
+async function getInventory() {
+  let inventoryList = {};
+
+  // get the molecular inventory from firebase
+  let querySnapshot = await getDocs(collection(db, "molecular-inventory"));
+
+  // get this list of molecule data
+  querySnapshot.docs.forEach((item) => {
+    inventoryList = item.data().moleculeList;
+  });
+
+  return inventoryList;
 }
 
 // get a list of fermentation results from all species for a single product
@@ -286,9 +301,69 @@ function speciesToCollectionName(species) {
   return speciesToCollectionMapping[species.toLowerCase()];
 }
 
+// map for inventory file
+const columnMap = {
+  Product: "Product",
+  num_yarrowia_results: "Number of results in Yarrowia Database",
+  molecularWeight: "Estimated M.W. of products",
+  deltaGFormation: "Product Delta G of formation (obtained from equilibrator calculator: https://equilibrator.weizmann.ac.il/) pH=7, pMg=3.0, IS= 0.25M",
+  precursors: "Central carbon precursor",
+  precursorDeltaGFormation: "Central carbon precursor Delta G of formation",
+  numberEnzymaticSteps: "Pathway enzymatic steps",
+  numberPrecursorsRequired: "# precursors required",
+  ATPCost: "ATP cost",
+  CofactorCost: "Cofactor cost",
+  NumCarbons: "# carbons in product",
+  numHydrogens: "# hydrogens in product",
+  numOxygens: "# oxygens in product",
+  numNitrogens: "# nitrogens in product",
+  TheoreticalYieldPerMolGlucose: "Theoretical Yield(mol Product/mol Glucose)",
+  solubilityGPerL: "solubility g/L(25C)",
+};
+
+// function for converting the data to csv
+function convertToCSV(data) {
+  if (!data || !data.length) {
+    return '';
+  }
+
+  const csvRows = [];
+  
+  const headers = Object.keys(columnMap);
+  csvRows.push(headers.map(header => columnMap[header]).join(','));
+  
+  for (const row of data) {
+    const values = headers.map(header => {
+      const escaped = (''+row[header]).replace(/"/g, '\\"');
+      return `"${escaped}"`;
+    });
+    csvRows.push(values.join(','));
+  }
+  
+  return csvRows.join('\n');
+}
+
+// function for downloading the fetched data to user's computer in csv file
+function downloadInventoryCSV(data) {
+  const csvData = convertToCSV(data);
+  if (!csvData) {
+    return;
+  }
+  const blob = new Blob([csvData], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.setAttribute('hidden','');
+  a.setAttribute('href', url);
+  a.setAttribute('download', 'molecular-inventory.csv');
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 export {
   getPaperArray,
   getPaperObject,
+  getInventory,
   getProductResults,
   addPaper,
   updatePaper,
@@ -304,4 +379,6 @@ export {
   haveSameData,
   getSpeciesToCollectionMapping,
   speciesToCollectionName,
+  downloadInventoryCSV,
+  convertToCSV,
 };

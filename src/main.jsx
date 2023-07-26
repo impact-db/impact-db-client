@@ -18,6 +18,7 @@ import ScrollToTop from "./Hooks/ScrollToTop";
 import ProductListPage from "./ProductListPage/ProductListPage";
 import SubstrateListPage from "./SubstrateListPage.jsx/SubstrateListPage";
 import ChartPage from "./ChartPage/ChartPage";
+import InventoryPage from "./InventoryPage/InventoryPage";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ ReactDOM.render(
             <Route path="/products" element={<ProductListPage />} />
             <Route path="/substrates" element={<SubstrateListPage />} />
             <Route path="/charts" element={<ChartPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
 
             {/* dynamic routes */}
             <Route path="/database/:species" element={<PaperListPage />} />
