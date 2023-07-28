@@ -3,7 +3,7 @@ import { useFirebaseAuthentication } from "../../Auth/auth";
 import { elapsedTimeString } from "../../Helpers/dateHelpers";
 import DeleteCommentButton from "./DeleteCommentButton";
 
-const Comment = ({ comment, paper }) => {
+const Comment = ({ moleculeList, comments, comment }) => {
   // get the current user
   const currentUser = useFirebaseAuthentication();
 
@@ -13,7 +13,6 @@ const Comment = ({ comment, paper }) => {
     (comment.sourceEmail === currentUser.email ||
       currentUser.email === "tang.wustl.edu@gmail.com");
 
-  console.log(comment);
   return (
     <VStack w="100%" align="flex-start" spacing="0px">
       <HStack spacing="6px" align="center">
@@ -25,7 +24,11 @@ const Comment = ({ comment, paper }) => {
           {elapsedTimeString(comment.timeAdded)}
         </Text>
         {showDeleteCommentButton && (
-          <DeleteCommentButton comment={comment} paper={paper} />
+          <DeleteCommentButton
+            moleculeList={moleculeList}
+            comments={comments}
+            comment={comment}
+          />
         )}
       </HStack>
       <Text fontSize="14px">{comment.text}</Text>
