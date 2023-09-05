@@ -70,6 +70,9 @@ const NavBar = () => {
                 </MenuButton>
                 <Portal>
                   <MenuList>
+                    <MenuItem as={Link} to="/userinfo">
+                      User Info
+                    </MenuItem>
                     <MenuItem
                       onClick={() => {
                         signUserOut();
@@ -132,7 +135,12 @@ const NavBar = () => {
                 </NavLink>
 
                 {currentUser ? (
+                  <>
+                  <MenuItem as={Link} to="/userinfo">
+                    User Info
+                  </MenuItem>
                   <MenuItem onClick={signUserOut}>Sign out</MenuItem>
+                </>
                 ) : (
                   <MenuItem onClick={loginPopup}>Sign in</MenuItem>
                 )}

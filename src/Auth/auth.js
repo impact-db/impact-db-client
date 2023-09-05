@@ -21,15 +21,24 @@ function loginPopup() {
 const useFirebaseAuthentication = () => {
   const [authUser, setAuthUser] = useState(null);
   const [isFirst, setIsFirst] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unlisten = auth.onAuthStateChanged((_authUser) => {
+    const unlisten = auth.onAuthStateChanged(async (_authUser) => {
+      setLoading(true);
       if (_authUser) {
         setAuthUser(_authUser);
+        _authUser.email=_authUser.email;
+        // Get JWT token
+        const token = await _authUser.getIdToken(true);
+        _authUser.jwt = token;
       } else if (!isFirst) {
         setAuthUser(null);
+        setEmail(null);
+        setJwt(null);
       }
       setIsFirst(false);
+      setLoading(false);  // Set loading to false
     });
     return () => {
       unlisten();
