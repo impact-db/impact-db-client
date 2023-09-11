@@ -18,32 +18,61 @@ function loginPopup() {
     });
 }
 
+// const useFirebaseAuthentication = () => {
+//   const [authUser, setAuthUser] = useState(null);
+//   const [isFirst, setIsFirst] = useState(true);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const unlisten = auth.onAuthStateChanged(async (_authUser) => {
+//       setLoading(true);
+//       if (_authUser) {
+//         setAuthUser(_authUser);
+//         _authUser.email=_authUser.email;
+//         // Get JWT token
+//         const token = await _authUser.getIdToken(true);
+//         _authUser.jwt = token;
+//       } else if (!isFirst) {
+//         setAuthUser(null);
+//         setEmail(null);
+//         setJwt(null);
+//       }
+//       setIsFirst(false);
+//       setLoading(false);  // Set loading to false
+//     });
+//     return () => {
+//       unlisten();
+//     };
+//   }, []);
+
+//   return authUser;
+// };
+
 const useFirebaseAuthentication = () => {
   const [authUser, setAuthUser] = useState(null);
   const [isFirst, setIsFirst] = useState(true);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unlisten = auth.onAuthStateChanged(async (_authUser) => {
-      setLoading(true);
+    const handleAuthStateChanged = async (_authUser) => {
       if (_authUser) {
-        setAuthUser(_authUser);
-        _authUser.email=_authUser.email;
-        // Get JWT token
         const token = await _authUser.getIdToken(true);
-        _authUser.jwt = token;
+        // Create a shallow copy and extend the _authUser with the token
+        setAuthUser({
+          ..._authUser,
+          jwt: token,
+        });
       } else if (!isFirst) {
         setAuthUser(null);
-        setEmail(null);
-        setJwt(null);
       }
       setIsFirst(false);
-      setLoading(false);  // Set loading to false
-    });
+    };
+
+    const unlisten = auth.onAuthStateChanged(handleAuthStateChanged);
+
     return () => {
       unlisten();
     };
-  }, []);
+  }, [isFirst]); // Added isFirst to the dependency array since it's used inside the useEffect
 
   return authUser;
 };
