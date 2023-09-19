@@ -11,6 +11,7 @@ import ContactSection from "./ContactSection/ContactSection";
 import DatabaseSection from "./DatabaseSection/DatabaseSection";
 import ChartSection from "./ChartSection/ChartSection";
 import InventorySection from "./InventorySection/InventorySection";
+import PathwaySection from "./PathwaySection/PathwaySection";
 
 const HomePage = () => {
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
@@ -118,10 +119,10 @@ const HomePage = () => {
         )}
       />
 
-      {/* chart section */}
-      <ChartSection />
-
-      {/* gradient transition */}
+      {/* Pathway Section */}
+      <PathwaySection />
+      
+      {/* Gradient transition */}
       <Box
         h="150px"
         w="100%"
@@ -131,11 +132,31 @@ const HomePage = () => {
         )}
       />
 
+      {/* chart section */}
+      <ChartSection />
+
+      {/* gradient transition */}
+      <Box
+        h="150px"
+        w="100%"
+        bgGradient={useColorModeValue(
+          "linear(to-b, transparent, gray.200)",
+          "linear(to-b, transparent, gray.900)"
+        )}
+      />
+
       {/* Contact section */}
       <ContactSection />
 
       {/* spacer */}
-      <Box h="100px" w="100%" />
+      <Box
+        h="150px"
+        w="100%"
+        bgGradient={useColorModeValue(
+          "linear(to-b, gray.200, transparent)",
+          "linear(to-b, gray.900, transparent)"
+        )}
+      />
     </>
   );
 };

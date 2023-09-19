@@ -19,6 +19,7 @@ import ProductListPage from "./ProductListPage/ProductListPage";
 import SubstrateListPage from "./SubstrateListPage.jsx/SubstrateListPage";
 import ChartPage from "./ChartPage/ChartPage";
 import InventoryPage from "./InventoryPage/InventoryPage";
+import PathwayPage from "./PathwayPage/PathwayPage";
 import UserInfo from "./UserInfoPage/UserInfo";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ ReactDOM.render(
             <Route path="/substrates" element={<SubstrateListPage />} />
             <Route path="/charts" element={<ChartPage />} />
             <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/pathway" element={<PathwayPage/>} />
             <Route path='/userinfo' element={<UserInfo/>} />
 
             {/* dynamic routes */}

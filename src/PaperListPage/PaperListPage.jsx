@@ -21,7 +21,7 @@ import { useParams } from "react-router-dom";
 import SummaryText from "./PaperList/SummaryText";
 import PaperPageList from "./PaperList/PaperPageList";
 import { useQuery } from "@tanstack/react-query";
-import LoadingDots from "../LoadingDots/LoadingDots";
+import LoadingDots from "../loadingDots/LoadingDots";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { HashLink } from "react-router-hash-link";
 
