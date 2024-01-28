@@ -42,6 +42,8 @@ const ExperimentalDataForm = ({
   const params = useParams();
   const species = params?.species;
   const collectionName = speciesToCollectionName(species);
+  console.log("species", species);
+  console.log("collectionName", collectionName);
 
   // get the cached data for the paper array
   const paperArray = queryClient.getQueryData(["paperArray", collectionName]);
@@ -160,180 +162,174 @@ const ExperimentalDataForm = ({
   );
 
   return (
-    <>
-      <Stack mt="30px" spacing="20px">
-        <Formik
-          initialValues={{ file: "", authors: "" }}
-          onSubmit={async (_values, actions) => {
-            setButtonLoading(true);
-            // handle if the form is for adding a paper
-            if (formType === "addPaper") {
-              // first check if there is a user logged in
-              if (!currentUser) {
-                // show google login modal
-                loginPopup();
+    <Stack mt="30px" spacing="20px">
+      <Formik
+        initialValues={{ file: "", authors: "" }}
+        onSubmit={async (_values, actions) => {
+          setButtonLoading(true);
+          // handle if the form is for adding a paper
+          if (formType === "addPaper") {
+            // first check if there is a user logged in
+            if (!currentUser) {
+              // show google login modal
+              loginPopup();
 
-                // show error toast
+              // show error toast
+              toast({
+                title: "Error: Sign in to add this paper to the database.",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+              });
+
+              setButtonLoading(false);
+            } else {
+              // get slug of the paper to add to database
+              const slug = convertToSlug(paperData.title);
+
+              // get slugs of papers already in database
+              let slugs = paperArray.map((paper) => paper.slug);
+
+              // check if there is a matching slug already in the database
+              if (slugs.indexOf(slug) !== -1) {
+                // give error message
                 toast({
-                  title: "Error: sign in to add this paper to the database.",
+                  title:
+                    "Error: A paper with this title is already in this database",
                   status: "error",
                   duration: 5000,
                   isClosable: true,
                 });
-
                 setButtonLoading(false);
               } else {
-                // get slug of the paper to add to database
-                const slug = convertToSlug(paperData.title);
+                // if user is logged in AND slug is unique THEN add paper to database
+                newPaper = {
+                  ...paperData,
+                  experimentalData: [], // need to update this line with data from file
+                  comments: [],
+                  issues: [],
+                  slug: slug,
+                  sourceEmail: currentUser.email,
+                  timeAdded: Date.now(),
+                };
 
-                // get slugs of papers already in database
-                let slugs = paperArray.map((paper) => paper.slug);
-
-                // check if there is a matching slug already in the database
-                if (slugs.indexOf(slug) !== -1) {
-                  // give error message
-                  toast({
-                    title:
-                      "Error: A paper with this title is already in this database",
-                    status: "error",
-                    duration: 5000,
-                    isClosable: true,
-                  });
-                  setButtonLoading(false);
-                } else {
-                  // if user is logged in AND slug is unique THEN add paper to database
-                  newPaper = {
-                    ...paperData,
-                    experimentalData: [], // need to update this line with data from file
-                    comments: [],
-                    issues: [],
-                    slug: slug,
-                    sourceEmail: currentUser.email,
-                    timeAdded: Date.now(),
-                  };
-
-                  // add paper to database
-                  addPaperMutation.mutate({ collectionName, newPaper });
-                }
+                // add paper to database
+                addPaperMutation.mutate({ collectionName, newPaper });
               }
             }
-            // if the form is for updating a paper, then update it
-            else if (formType === "updatePaper") {
-              // first check if there is a user logged in
-              if (!currentUser) {
-                // show google login modal
-                loginPopup();
-                // maybe click the submit button via a ref here if there is a current user
+          }
+          // if the form is for updating a paper, then update it
+          else if (formType === "updatePaper") {
+            // first check if there is a user logged in
+            if (!currentUser) {
+              // show google login modal
+              loginPopup();
+              // maybe click the submit button via a ref here if there is a current user
 
-                // show error toast
+              // show error toast
+              toast({
+                title: "Error: Sign in to edit this paper to the database.",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+              });
+
+              setButtonLoading(false);
+            } else {
+              // get slug of the paper to add to database
+              const updatedSlug = convertToSlug(paperData.title);
+
+              // get slugs of papers already in database
+              let slugs = paperArray.map((paper) => paper.slug);
+
+              if (
+                updatedSlug !== oldSlug &&
+                slugs.indexOf(updatedSlug) !== -1
+              ) {
+                // give error message
                 toast({
-                  title: "Error: sign in to edit this paper to the database.",
+                  title:
+                    "Error: The updated title of this paper matches a different paper in the database",
                   status: "error",
                   duration: 5000,
                   isClosable: true,
                 });
-
                 setButtonLoading(false);
               } else {
-                // get slug of the paper to add to database
-                const updatedSlug = convertToSlug(paperData.title);
+                // if user is logged in AND slug is unique THEN update paper to database
+                // get the old version of paper
+                const indexToUpdate = slugs.indexOf(oldSlug);
+                const oldPaper = paperArray[indexToUpdate];
 
-                // get slugs of papers already in database
-                let slugs = paperArray.map((paper) => paper.slug);
+                updatedPaper = {
+                  ...paperData,
+                  experimentalData: oldPaper.experimentalData,
+                  comments: oldPaper.comments,
+                  issues: oldPaper.issues,
+                  slug: updatedSlug,
+                  sourceEmail: currentUser.email,
+                  timeAdded: Date.now(),
+                };
 
-                if (
-                  updatedSlug !== oldSlug &&
-                  slugs.indexOf(updatedSlug) !== -1
-                ) {
-                  console.log(
-                    "The updated title of this paper matches a different paper in the database"
-                  );
+                // add paper to database
+                editPaperMutation.mutate({
+                  collectionName,
+                  oldSlug,
+                  updatedPaper,
+                });
 
-                  // give error message
-                  toast({
-                    title:
-                      "Error: The updated title of this paper matches a different paper in the database",
-                    status: "error",
-                    duration: 5000,
-                    isClosable: true,
-                  });
-                  setButtonLoading(false);
-                } else {
-                  // if user is logged in AND slug is unique THEN update paper to database
-                  // get the old version of paper
-                  const indexToUpdate = slugs.indexOf(oldSlug);
-                  const oldPaper = paperArray[indexToUpdate];
-
-                  updatedPaper = {
-                    ...paperData,
-                    experimentalData: oldPaper.experimentalData,
-                    comments: oldPaper.comments,
-                    issues: oldPaper.issues,
-                    slug: updatedSlug,
-                    sourceEmail: currentUser.email,
-                    timeAdded: Date.now(),
-                  };
-
-                  // add paper to database
-                  editPaperMutation.mutate({
-                    collectionName,
-                    oldSlug,
-                    updatedPaper,
-                  });
-
-                  actions.setSubmitting(false);
-                }
+                actions.setSubmitting(false);
               }
             }
-          }}
-        >
-          {(props) => (
-            <Form>
-              <Stack spacing="0px" align="center">
-                <FileUploadBox />
-                <Text fontSize="14px" pt="5px" color={greenColor}>
-                  Upload a .csv or .tsv up to 10 MB
+          }
+        }}
+      >
+        {(props) => (
+          <Form>
+            <Stack spacing="0px" align="center">
+              <FileUploadBox />
+              <Text fontSize="14px" pt="5px" color={greenColor}>
+                Upload a .csv or .tsv up to 10 MB
+              </Text>
+              <Link pt="20px" color={greenColor} onClick={downloadExample}>
+                download example file
+              </Link>
+              <Spacer pt="20px" />
+              <Alert status="info">
+                <AlertIcon />
+                <Text>
+                  File uploading is currently under development. For now, please
+                  add your paper without data.
                 </Text>
-                <Link pt="20px" color={greenColor} onClick={downloadExample}>
-                  download example file
-                </Link>
-                <Spacer pt="20px" />
-                <Alert status="info">
-                  <AlertIcon />
-                  <Text>
-                    File uploading is currently under development. For now,
-                    please add your paper without data.
-                  </Text>
-                </Alert>
-              </Stack>
-              <ModalFooter mt="20px">
-                <Button
-                  mr={3}
-                  onClick={() => {
-                    setFormNum(1);
-                  }}
-                >
-                  Back
-                </Button>
-                <Button mr={3} onClick={onClose}>
-                  Close
-                </Button>
-                <Button
-                  bg="green.100"
-                  color="gray.800"
-                  isLoading={buttonLoading}
-                  type="submit"
-                >
-                  {/* change button text depending on if the form is for adding or editing a paper */}
-                  {formType === "addPaper" && <Text>Add Paper</Text>}
-                  {formType === "updatePaper" && <Text>Update Paper</Text>}
-                </Button>
-              </ModalFooter>
-            </Form>
-          )}
-        </Formik>
-      </Stack>
-    </>
+              </Alert>
+            </Stack>
+            <ModalFooter mt="20px">
+              <Button
+                mr={3}
+                onClick={() => {
+                  setFormNum(1);
+                }}
+              >
+                Back
+              </Button>
+              <Button mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button
+                bg="green.100"
+                color="gray.800"
+                isLoading={buttonLoading}
+                type="submit"
+              >
+                {/* change button text depending on if the form is for adding or editing a paper */}
+                {formType === "addPaper" && <Text>Add Paper</Text>}
+                {formType === "updatePaper" && <Text>Update Paper</Text>}
+              </Button>
+            </ModalFooter>
+          </Form>
+        )}
+      </Formik>
+    </Stack>
   );
 };
 

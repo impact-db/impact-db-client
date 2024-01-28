@@ -1,6 +1,5 @@
 import { Heading, Spacer, Stack, Text, VStack } from "@chakra-ui/react";
 import SpeciesList from "./SpeciesList";
-// import SpeciesList from "../DatabaseSection/SpeciesList";
 
 const DatabaseSection = () => {
   return (

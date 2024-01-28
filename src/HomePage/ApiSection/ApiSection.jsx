@@ -9,23 +9,16 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { getSpeciesList } from "../../Helpers/databaseHelpers";
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+// function capitalizeFirstLetter(string) {
+//   return string.charAt(0).toUpperCase() + string.slice(1);
+// }
 
 const ApiSection = () => {
   const [species, setSpecies] = useState("yarrowia");
 
-  const speciesList = [
-    "yarrowia",
-    "rhodosporidium",
-    "lipomyces",
-    "pichia",
-    "saccharomyces",
-    "rhodococcus",
-    "clostridium",
-  ];
+  let speciesList = getSpeciesList();
 
   return (
     <VStack
@@ -63,7 +56,7 @@ const ApiSection = () => {
                     variant={_species === species ? "solid" : ""}
                     onClick={() => setSpecies(_species.toLowerCase())}
                   >
-                    {capitalizeFirstLetter(_species)}
+                    {_species}
                   </Button>
                 </WrapItem>
               );

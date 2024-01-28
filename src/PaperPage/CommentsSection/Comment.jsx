@@ -13,7 +13,6 @@ const Comment = ({ comment, paper }) => {
     (comment.sourceEmail === currentUser.email ||
       currentUser.email === "tang.wustl.edu@gmail.com");
 
-  console.log(comment);
   return (
     <VStack w="100%" align="flex-start" spacing="0px">
       <HStack spacing="6px" align="center">

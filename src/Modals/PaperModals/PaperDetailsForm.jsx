@@ -55,7 +55,6 @@ const PaperDetailsForm = ({
 
   function validateDate(value) {
     let error;
-    console.log(value, typeof value);
     if (!value) {
       error = "Publish date is required";
     } else {
@@ -63,7 +62,6 @@ const PaperDetailsForm = ({
       if (year < 1900) {
         error = "Publish year must be after 1900";
       }
-      console.log(year);
     }
 
     return error;

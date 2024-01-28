@@ -8,7 +8,7 @@ import {
 import { db } from "../../config/firebase";
 
 async function getPaperArray(collectionName) {
-  console.log("running get paper array");
+  console.log("getting paper array with", collectionName);
   let paperArray = [];
 
   // get paper lists from firebasae
@@ -88,11 +88,9 @@ async function deleteInventoryComment(moleculeList, oldComments, comment) {
 async function getProductResults(product) {
   try {
     const productResultsUrl = `https://us-central1-impact-db.cloudfunctions.net/getProductResults/${product}`;
-    // console.log("product results url is", productResultsUrl);
     const response = await fetch(productResultsUrl);
-    // console.log("response is", response);
     const data = await response.json();
-    console.log("data is", data);
+
     return data;
   } catch (e) {
     console.log("error occured:", e);
@@ -313,26 +311,86 @@ function haveSameData(obj1, obj2) {
   return false;
 }
 
-function getSpeciesToCollectionMapping() {
-  return {
-    yarrowia: "yarrowia-papers",
-    rhodosporidium: "rhodosporidium-papers",
-    saccharomyces: "saccharomyces-papers",
-    lipomyces: "lipomyces-papers",
-    pichia: "pichia-papers",
-    rhodococcus: "rhodococcus-papers",
-    clostridium: "clostridium-papers",
-    testing: "testing-papers",
-  };
+function getSpeciesInfo() {
+  return [
+    {
+      name: "Yarrowia",
+      collectionName: "yarrowia-papers",
+      type: "yeast",
+      display: true,
+    },
+    {
+      name: "Rhodosporidium",
+      collectionName: "rhodosporidium-papers",
+      type: "yeast",
+      display: true,
+    },
+    {
+      name: "Saccharomyces",
+      collectionName: "saccharomyces-papers",
+      type: "yeast",
+      display: true,
+    },
+    {
+      name: "Lipomyces",
+      collectionName: "lipomyces-papers",
+      type: "yeast",
+      display: true,
+    },
+
+    {
+      name: "Pichia",
+      collectionName: "pichia-papers",
+      type: "yeast",
+      display: true,
+    },
+    {
+      name: "Rhodococcus",
+      collectionName: "rhodococcus-papers",
+      type: "bacteria",
+      display: true,
+    },
+    {
+      name: "Clostridium",
+      collectionName: "clostridium-papers",
+      type: "bacteria",
+      display: true,
+    },
+    {
+      name: "Escherichia",
+      collectionName: "escherichia-papers",
+      type: "bacteria",
+      display: true,
+    },
+    {
+      name: "Synechococcus",
+      collectionName: "synechococcus-papers",
+      type: "bacteria",
+      display: true,
+    },
+    {
+      name: "Testing",
+      collectionName: "testing-papers",
+      type: "bacteria",
+      display: false,
+    },
+  ];
+}
+
+function getSpeciesList() {
+  const speciesInfo = getSpeciesInfo();
+
+  return speciesInfo.map((species) => species.name.toLowerCase());
 }
 
 // get the collection name in firebase from the species name in the url
 function speciesToCollectionName(species) {
-  // if no species is provided, return an empty string to prevent an error
-  if (!species) return "";
+  const speciesInfo = getSpeciesInfo();
+  const speciesData = speciesInfo.find(
+    (s) => s.name.toLowerCase() === species.toLowerCase()
+  );
 
-  const speciesToCollectionMapping = getSpeciesToCollectionMapping();
-  return speciesToCollectionMapping[species.toLowerCase()];
+  return speciesData ? speciesData.collectionName : null;
 }
 
 // map for inventory file
@@ -414,7 +472,8 @@ export {
   getProductArray,
   getDailyStatsArray,
   haveSameData,
-  getSpeciesToCollectionMapping,
+  getSpeciesInfo,
+  getSpeciesList,
   speciesToCollectionName,
   downloadInventoryCSV,
   convertToCSV,

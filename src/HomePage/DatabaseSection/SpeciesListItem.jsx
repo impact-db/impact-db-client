@@ -11,10 +11,7 @@ import { Link } from "react-router-dom";
 import YeastIcon from "../../Assets/YeastIcon";
 import BacteriaIcon from "../../Assets/BacteriaIcon";
 import { convertToSlug } from "../../Helpers/stringHelpers";
-import {
-  getPaperArray,
-  speciesToCollectionName,
-} from "../../Helpers/databaseHelpers";
+import { getPaperArray } from "../../Helpers/databaseHelpers";
 import { useQuery } from "@tanstack/react-query";
 
 const SpeciesListItem = ({ species }) => {
@@ -24,8 +21,7 @@ const SpeciesListItem = ({ species }) => {
     "0 1px 2px 0 rgb(60 64 67 / 80%), 0 1px 3px 1px rgb(60 64 67 / 50%);"
   );
 
-  // get collectionName from species name
-  const collectionName = speciesToCollectionName(species.name);
+  const collectionName = species.collectionName;
 
   const { isLoading, data } = useQuery(
     ["paperArray", collectionName],

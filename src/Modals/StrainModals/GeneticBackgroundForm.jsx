@@ -131,7 +131,6 @@ const GeneticBackgroundForm = ({
     {
       onMutate: () => {
         setLoading(true);
-        console.log("new strain", newStrain);
       },
       onSuccess: () => {
         // make a version of the paper with the new strain added
@@ -204,8 +203,6 @@ const GeneticBackgroundForm = ({
       updateStrain(collectionName, paper, newStrain, oldStrain),
     {
       onMutate: () => {
-        console.log("old strain", oldStrain);
-        console.log("new strain", newStrain);
         setLoading(true);
       },
       onSuccess: () => {
@@ -455,7 +452,7 @@ const GeneticBackgroundForm = ({
             loginPopup();
 
             toast({
-              title: "Error: sign in to add or edit this strain",
+              title: "Error: Sign in to add or edit this strain",
               status: "error",
               duration: 5000,
               isClosable: true,

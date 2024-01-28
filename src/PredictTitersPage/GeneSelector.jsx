@@ -23,7 +23,6 @@ const GeneSelector = ({
           onChange={(e) => {
             const newGeneData = e.target.value;
             const newGeneId = newGeneData.split(" - ")[0];
-            console.log(newGeneId);
             setNewKnockOutGeneId(newGeneId);
           }}
         >

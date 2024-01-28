@@ -1,17 +1,16 @@
 import { AspectRatio } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { dailyStatsToPointsString } from "../Helpers/chartHelpers";
-import {
-  getDailyStatsArray,
-  getSpeciesToCollectionMapping,
-} from "../Helpers/databaseHelpers";
+import { getDailyStatsArray, getSpeciesList } from "../Helpers/databaseHelpers";
 import { DateToChartString } from "../Helpers/dateHelpers";
 import LoadingDots from "../loadingDots/LoadingDots";
 import ChartLine from "./ChartLine";
 
 const DailyStatsChart = () => {
   // get the list of species and remove testing
-  let speciesList = Object.keys(getSpeciesToCollectionMapping());
+  let speciesList = getSpeciesList();
+
+  // remove testing data
   speciesList = speciesList.filter((species) => species !== "testing");
 
   const { isLoading, data } = useQuery(["dailyStatsArray"], () =>
@@ -19,13 +18,8 @@ const DailyStatsChart = () => {
   );
 
   if (isLoading) {
-    return (
-      <>
-        <LoadingDots />
-      </>
-    );
+    return <LoadingDots />;
   } else {
-    console.log(data);
     // convert data to represent the whole database
     const dailyStats = data.map((date) => {
       let totalPapers = 0;
@@ -65,7 +59,6 @@ const DailyStatsChart = () => {
     const minYValue = 0;
     const maxYValue = 82;
 
-    // const pointsString = pointsArray.join(" ");
     const paperPointsString = dailyStatsToPointsString({
       dailyStats,
       type: "papers",

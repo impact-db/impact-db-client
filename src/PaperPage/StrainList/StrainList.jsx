@@ -10,12 +10,6 @@ import { useEffect, useState } from "react";
 import AddStrainButton from "./AddStrainButton";
 import StrainListItem from "../StrainListItem/StrainListItem";
 import DataTypeTabs from "./DataTypeTabs";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import {
-  getPaperArray,
-  speciesToCollectionName,
-} from "../../Helpers/databaseHelpers";
 
 const StrainList = ({ data, page }) => {
   const [displayData, setDisplayData] = useState([]);
@@ -26,8 +20,6 @@ const StrainList = ({ data, page }) => {
   const rowOrCol = isLargerThan700 ? "row" : "column-reverse";
 
   let paper = data;
-
-  console.log(paper.experimentalData);
 
   useEffect(() => {
     let newDisplayData = [...paper.experimentalData];
@@ -93,7 +85,7 @@ const StrainList = ({ data, page }) => {
             strain={strain}
             dataType={dataType}
             isLargerThan700={isLargerThan700}
-            page = {page}
+            page={page}
           />
         );
       })}

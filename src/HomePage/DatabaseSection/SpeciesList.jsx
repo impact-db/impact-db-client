@@ -2,18 +2,10 @@ import { SimpleGrid } from "@chakra-ui/react";
 import { isLocalhost } from "../../Helpers/helpers";
 import SpeciesListItem from "./SpeciesListItem";
 import SuggestOrganismButton from "./SuggestOrganismButton";
+import { getSpeciesInfo } from "../../Helpers/databaseHelpers";
 
 const SpeciesList = () => {
-  const speciesList = [
-    { name: "Yarrowia", type: "yeast", display: true },
-    { name: "Rhodosporidium", type: "yeast", display: true },
-    { name: "Lipomyces", type: "yeast", display: true },
-    { name: "Pichia", type: "yeast", display: true },
-    { name: "Saccharomyces", type: "yeast", display: true },
-    { name: "Rhodococcus", type: "bacteria", display: true },
-    { name: "Clostridium", type: "bacteria", display: true },
-    { name: "Testing", type: "bacteria", display: false },
-  ];
+  const speciesList = getSpeciesInfo();
 
   return (
     <SimpleGrid minChildWidth="270px" spacing="40px" w="100%">

@@ -71,17 +71,6 @@ const DeleteStrainButton = ({ strain }) => {
 
         // make a version of the paper with the new strain added
         let updatedPaper = structuredClone(paper);
-        // updatedPaper.experimentalData = updatedPaper.experimentalData.filter(
-        //   (oldStrain) => {
-        //     console.log(
-        //       oldStrain.titer,
-        //       !haveSameData(oldStrain, strain),
-        //       oldStrain,
-        //       strain
-        //     );
-        //     return !haveSameData(oldStrain, strain);
-        //   }
-        // );
 
         // get the index of the paper to update
         const slugs = paperArray.map((_paper) => _paper.slug);

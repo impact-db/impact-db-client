@@ -13,10 +13,7 @@ import ControlBox from "./ControlBox";
 import PaperList from "./PaperList/PaperList";
 import { dateConverterNums } from "../Helpers/dateHelpers.js";
 import AddPaperButton from "./AddPaperButton.jsx";
-import {
-  getPaperArray,
-  speciesToCollectionName,
-} from "../Helpers/databaseHelpers.js";
+import { getPaperArray } from "../Helpers/databaseHelpers.js";
 import { useParams } from "react-router-dom";
 import SummaryText from "./PaperList/SummaryText";
 import PaperPageList from "./PaperList/PaperPageList";
@@ -26,14 +23,12 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import { HashLink } from "react-router-hash-link";
 
 const PaperListPage = () => {
-  console.log("on paper list page");
   // get collectionName from url parameters
   const params = useParams();
   const species = params?.species;
 
-  console.log(species);
-  const collectionName = speciesToCollectionName(species);
-  console.log(collectionName);
+  // get collectionName from species name
+  const collectionName = `${species.toLowerCase()}-papers`;
 
   // handle mobile styles
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
@@ -49,9 +44,6 @@ const PaperListPage = () => {
   // create state variables
   const [displayPapers, setDisplayPapers] = useState([]);
   const [onScreenPapers, setOnScreenPapers] = useState(displayPapers.slice(10));
-
-  // check if there is a page number stored, if not then use 0
-  // const pageNumber = localStorage.getItem(`${species}PageNumber`);
 
   const [page, setPage] = useState(() => {
     // getting stored value
@@ -71,15 +63,15 @@ const PaperListPage = () => {
     paperArray = data;
   }
 
-  // update paper list on paper array change, search, year filter, or sort
+  // Process and filter paperArray data
   useEffect(() => {
-    let displayList;
+    if (!data) return;
 
-    // handle year filter
-    if (yearFilter === "All") {
-      displayList = paperArray;
-    } else {
-      displayList = paperArray.filter((paper) => {
+    let filteredPapers = data;
+
+    // Year filter
+    if (yearFilter !== "All") {
+      filteredPapers = filteredPapers.filter((paper) => {
         const paperYear = parseFloat(
           dateConverterNums(paper.date).split("/")[2]
         );
@@ -87,62 +79,47 @@ const PaperListPage = () => {
       });
     }
 
-    // handle search filter
-    displayList = displayList.filter((paper) => {
-      return (
+    // Search filter
+    filteredPapers = filteredPapers.filter(
+      (paper) =>
         paper.title.toLowerCase().includes(searchValue.toLowerCase()) ||
         paper.abstract.toLowerCase().includes(searchValue.toLowerCase()) ||
         paper.authors.toLowerCase().includes(searchValue.toLowerCase())
-      );
-    });
+    );
 
-    // handle sorting
+    // Sorting
     switch (sortMethod) {
       case "Publish Date (newest)":
-        displayList.sort(function (a, b) {
-          return new Date(b.date) > new Date(a.date) ? 1 : -1;
-        });
+        filteredPapers.sort((a, b) => new Date(b.date) - new Date(a.date));
         break;
       case "Publish Date (oldest)":
-        displayList.sort(function (a, b) {
-          return new Date(b.date) < new Date(a.date) ? 1 : -1;
-        });
+        filteredPapers.sort((a, b) => new Date(a.date) - new Date(b.date));
         break;
       case "Upload Date (newest)":
-        displayList.sort(function (a, b) {
-          return b.timeAdded > a.timeAdded ? 1 : -1;
-        });
+        filteredPapers.sort((a, b) => b.timeAdded - a.timeAdded);
         break;
       case "Upload Date (oldest)":
-        displayList.sort(function (a, b) {
-          return b.timeAdded < a.timeAdded ? 1 : -1;
-        });
+        filteredPapers.sort((a, b) => a.timeAdded - b.timeAdded);
         break;
       case "Alphabetical (A-Z)":
-        displayList.sort(function (a, b) {
-          return b.title < a.title ? 1 : -1;
-        });
+        filteredPapers.sort((a, b) => a.title.localeCompare(b.title));
         break;
       case "Alphabetical (Z-A)":
-        displayList.sort(function (a, b) {
-          return b.title.toLowerCase() > a.title.toLowerCase() ? 1 : -1;
-        });
+        filteredPapers.sort((a, b) => b.title.localeCompare(a.title));
         break;
       default:
         console.log("unrecognized sort method");
     }
-    setDisplayPapers(displayList);
-  }, [paperArray, yearFilter, searchValue, sortMethod]);
 
-  // update papers on screen when displayPapers changes
-  useEffect(() => {
-    setOnScreenPapers(displayPapers.slice(page * 10, page * 10 + 10));
-  }, [displayPapers]);
+    setDisplayPapers(filteredPapers);
+  }, [data, yearFilter, searchValue, sortMethod]);
 
-  // update papers on screen when page changes
+  // Update on-screen papers when displayPapers or page changes
   useEffect(() => {
-    setOnScreenPapers(displayPapers.slice(page * 10, page * 10 + 10));
-  }, [page]);
+    const start = page * 10;
+    const end = start + 10;
+    setOnScreenPapers(displayPapers.slice(start, end));
+  }, [displayPapers, page]);
 
   return (
     <>
