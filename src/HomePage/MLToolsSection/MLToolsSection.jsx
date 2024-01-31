@@ -34,7 +34,7 @@ const MLToolsSection = () => {
     >
       <VStack w="100%" maxW="1000px" m="auto" pt="20px" px="20px">
         <Heading textAlign="center">Machine Learning Tools</Heading>
-        <Text textAlign="justify" maxW="800px" opacity="0.8">
+        <Text textAlign="center" maxW="800px" opacity="0.8">
           These user-friendly interfaces allow modern computational tools to be
           used in the browser
         </Text>

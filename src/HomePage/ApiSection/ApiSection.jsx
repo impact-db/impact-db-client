@@ -19,6 +19,7 @@ const ApiSection = () => {
   const [species, setSpecies] = useState("yarrowia");
 
   let speciesList = getSpeciesList();
+  speciesList = speciesList.filter((species) => species !== "testing");
 
   return (
     <VStack
@@ -37,7 +38,7 @@ const ApiSection = () => {
         <a
           href={`https://us-central1-impact-db.cloudfunctions.net/getDatabase/${species}`}
         >
-          <Button variant="link" target="_blank">
+          <Button variant="link" target="_blank" fontSize={["xs", "sm", "md"]}>
             https://us-central1-impact-db.cloudfunctions.net/getDatabase/
             {species}
           </Button>
@@ -46,12 +47,15 @@ const ApiSection = () => {
           <Text fontSize="15px" opacity="0.8">
             Choose an organism:
           </Text>
-          <Wrap spacing={4}>
+          <Wrap spacing={4} justify="center" maxW="600px">
             {speciesList.map((_species, index) => {
               return (
                 <WrapItem key={index}>
                   <Button
                     colorScheme="green"
+                    fontSize="16px"
+                    bg={_species === species ? "green.100" : ""}
+                    color={_species === species ? "gray.800" : ""}
                     size="sm"
                     variant={_species === species ? "solid" : ""}
                     onClick={() => setSpecies(_species.toLowerCase())}

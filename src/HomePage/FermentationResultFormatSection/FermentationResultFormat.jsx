@@ -47,9 +47,8 @@ const FermentationResultFormat = () => {
         </TabList>
         <Spacer minH="40px" />
         <TabPanels>
-          <TabPanel maxW="100vw" overflow="scroll">
-            {/* <Box  overflow="scroll"> */}
-            <Box maxW="100vw" w="100%" overflow="scroll">
+          <TabPanel maxW="100vw">
+            <Box maxW="100vw" w="100%">
               <StrainListItem
                 strain={result}
                 dataType="titer"

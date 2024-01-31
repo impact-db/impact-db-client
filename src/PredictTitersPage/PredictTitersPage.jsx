@@ -1,12 +1,4 @@
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  Box,
-  Flex,
-  Heading,
-  Spacer,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Spacer } from "@chakra-ui/react";
 import AbstractFluxMap from "../Assets/AbstractFluxMap";
 import NavBar from "../NavBar/NavBar";
 import PredictTitersForm from "./PredictTitersForm";
@@ -26,10 +18,6 @@ const PredictTitersPage = () => {
         textAlign="center"
         margin="auto"
       />
-      <Alert maxW="500px" m="auto" mt="30px" status="warning">
-        <AlertIcon />
-        <AlertTitle>This feature is under development</AlertTitle>
-      </Alert>
       <PredictTitersForm />
       <Flex mt="75px" justify="center">
         <AbstractFluxMap />
