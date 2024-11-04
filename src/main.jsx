@@ -40,8 +40,8 @@ ReactDOM.render(
             <Route path="/substrates" element={<SubstrateListPage />} />
             <Route path="/charts" element={<ChartPage />} />
             <Route path="/inventory" element={<InventoryPage />} />
-            <Route path="/pathway" element={<PathwayPage/>} />
-            <Route path='/userinfo' element={<UserInfo/>} />
+            <Route path="/pathway" element={<PathwayPage />} />
+            <Route path="/userinfo" element={<UserInfo />} />
 
             {/* dynamic routes */}
             <Route path="/database/:species" element={<PaperListPage />} />

@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Heading,
   Spacer,
@@ -30,19 +31,46 @@ const ApiSection = () => {
       bg={useColorModeValue("gray.200", "gray.900")}
     >
       <Heading textAlign="center">ImpactDB API</Heading>
-      <Text textAlign="center" opacity="0.8">
-        Access the fermentation results through an API.
-      </Text>
-      <VStack w="100%" maxW="1000px" spacing="40px">
-        <Spacer maxH="100px" />
-        <a
-          href={`https://us-central1-impact-db.cloudfunctions.net/getDatabase/${species}`}
-        >
-          <Button variant="link" target="_blank" fontSize={["xs", "sm", "md"]}>
-            https://us-central1-impact-db.cloudfunctions.net/getDatabase/
-            {species}
-          </Button>
-        </a>
+
+      <VStack w="100%" maxW="1000px" spacing="30px">
+        <Text textAlign="center" opacity="0.8">
+          Access the ImpactDB through an API.
+        </Text>
+        <Box>
+          <Text textAlign="center" opacity="0.8">
+            View <u>fermentation results</u> as a JSON object
+          </Text>
+          <a
+            href={`https://us-central1-impact-db.cloudfunctions.net/getDatabase/${species}`}
+          >
+            <Button
+              variant="link"
+              target="_blank"
+              fontSize={["xs", "sm", "md"]}
+            >
+              https://us-central1-impact-db.cloudfunctions.net/getDatabase/
+              {species}
+            </Button>
+          </a>
+        </Box>
+        <Box>
+          <Text textAlign="center" opacity="0.8">
+            View the <u>papers</u> in the database as a JSON object
+          </Text>
+          <a
+            href={`https://us-central1-impact-db.cloudfunctions.net/getPapers/${species}`}
+          >
+            <Button
+              variant="link"
+              target="_blank"
+              fontSize={["xs", "sm", "md"]}
+            >
+              https://us-central1-impact-db.cloudfunctions.net/getPapers/
+              {species}
+            </Button>
+          </a>
+        </Box>
+
         <VStack spacing="5px">
           <Text fontSize="15px" opacity="0.8">
             Choose an organism:
