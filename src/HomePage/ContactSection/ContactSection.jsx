@@ -28,7 +28,7 @@ const ContactSection = () => {
         </Text>
         <VStack pt="20px" spacing="0px">
           <Text fontSize="15px" opacity="0.8">
-            Garrett Roell, Jeff Czajka, Yinjie Tang, Mattheos Koffas
+            Yufei Sun, Jeff Czajka, Mattheos Koffas, Yinjie Tang, Garrett Roell
           </Text>
           <Text fontSize="15px" opacity="0.8">
             2022

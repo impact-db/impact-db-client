@@ -38,34 +38,32 @@ const ApiSection = () => {
         </Text>
         <Box>
           <Text textAlign="center" opacity="0.8">
-            View <u>fermentation results</u> as a JSON object
+            Access <u>fermentation results</u>:
           </Text>
-          <a
-            href={`https://us-central1-impact-db.cloudfunctions.net/getDatabase/${species}`}
-          >
+          <a href={`https://impact-database.com/api/database/${species}`}>
             <Button
               variant="link"
               target="_blank"
               fontSize={["xs", "sm", "md"]}
+              color={useColorModeValue("gray.800", "gray.200")}
             >
-              https://us-central1-impact-db.cloudfunctions.net/getDatabase/
+              impact-database.com/api/database/
               {species}
             </Button>
           </a>
         </Box>
         <Box>
           <Text textAlign="center" opacity="0.8">
-            View the <u>papers</u> in the database as a JSON object
+            Access <u>papers</u>:
           </Text>
-          <a
-            href={`https://us-central1-impact-db.cloudfunctions.net/getPapers/${species}`}
-          >
+          <a href={`https://impact-database.com/api/papers/${species}`}>
             <Button
               variant="link"
               target="_blank"
               fontSize={["xs", "sm", "md"]}
+              color={useColorModeValue("gray.800", "gray.200")}
             >
-              https://us-central1-impact-db.cloudfunctions.net/getPapers/
+              impact-database.com/api/papers/
               {species}
             </Button>
           </a>
