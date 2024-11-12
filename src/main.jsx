@@ -21,7 +21,7 @@ import ChartPage from "./ChartPage/ChartPage";
 import InventoryPage from "./InventoryPage/InventoryPage";
 import PathwayPage from "./PathwayPage/PathwayPage";
 import UserInfo from "./UserInfoPage/UserInfo";
-import ApiRedirect from "./ApiRedirect/ApiRedirect";
+import ChatPage from "./ChatPage/ChatPage";
 
 const queryClient = new QueryClient();
 
@@ -33,9 +33,11 @@ ReactDOM.render(
           <ScrollToTop />
           <Routes>
             {/* static routes */}
+            <Route path="*" element={<NotFoundPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/predict-titers" element={<PredictTitersPage />} />
             <Route path="/design-strains" element={<DesignStrainsPage />} />
+            <Route path="/chat" element={<ChatPage />} />
             <Route path="/products" element={<ProductListPage />} />
             <Route path="/substrates" element={<SubstrateListPage />} />
             <Route path="/charts" element={<ChartPage />} />
@@ -47,20 +49,6 @@ ReactDOM.render(
             <Route path="/database/:species" element={<PaperListPage />} />
             <Route path="/paper/:species/:slug" element={<PaperPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
-
-            {/* External redirect route */}
-            <Route
-              path="/api/database/:species"
-              element={<ApiRedirect type="fermentation results" />}
-            />
-
-            <Route
-              path="/api/papers/:species"
-              element={<ApiRedirect type="papers" />}
-            />
-
-            {/* Catch-all route */}
-            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
