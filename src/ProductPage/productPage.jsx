@@ -43,35 +43,9 @@ const ProductPage = () => {
     // Function to format data and trigger CSV download
     const experimentalData = productData.experimentalData;
 
-    // Keys to drop from each object
-    const keysToDrop = [
-      "bioprocessNotes",
-      "geneticNotes",
-      "issues",
-      "sourceEmail",
-      "verified",
-    ];
-
-    // Define the first columns to appear in the CSV
-    const firstColumns = [
-      "species",
-      " paperSlug",
-      "product",
-      "titer",
-      "averageRate",
-      "maximumRate",
-      "yield",
-    ];
-
-    // Format the data by removing unwanted keys
-    const formattedData = experimentalData.map((item) => {
-      const formattedItem = { ...item };
-      keysToDrop.forEach((key) => delete formattedItem[key]);
-      return formattedItem;
-    });
-
     // Sort the data by the 'titer' key (convert to number for sorting)
-    const sortedData = formattedData.sort((a, b) => {
+    // const sortedData = formattedData.sort((a, b) => {
+    const sortedData = experimentalData.sort((a, b) => {
       return parseFloat(b.titer) - parseFloat(a.titer);
     });
 
@@ -102,7 +76,9 @@ const ProductPage = () => {
     // Define the first columns to appear in the CSV
     const firstColumns = [
       "species",
-      "paperSlug", // Removed extra space for consistency
+      "paperSlug",
+      "doi",
+      "date",
       "product",
       "titer",
       "averageRate",
@@ -181,7 +157,6 @@ const ProductPage = () => {
               Download the{" "}
               <Link
                 variant="underline"
-                // href="https://chakra-ui.com"
                 color={linkColor}
                 textDecoration="underline"
                 onClick={DownloadCSV}
@@ -190,7 +165,6 @@ const ProductPage = () => {
               </Link>{" "}
               results as a .csv file
             </Text>
-            {/* <Link>Download the {} database as a .csv file</Link> */}
             <StrainList data={productData} page="product" />
           </Box>
         </Box>

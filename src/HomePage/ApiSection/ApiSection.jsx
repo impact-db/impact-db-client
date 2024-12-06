@@ -12,10 +12,6 @@ import {
 import { useState } from "react";
 import { getSpeciesList } from "../../Helpers/databaseHelpers";
 
-// function capitalizeFirstLetter(string) {
-//   return string.charAt(0).toUpperCase() + string.slice(1);
-// }
-
 const ApiSection = () => {
   const [species, setSpecies] = useState("yarrowia");
 

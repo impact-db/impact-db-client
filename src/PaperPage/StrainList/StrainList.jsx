@@ -21,6 +21,8 @@ const StrainList = ({ data, page }) => {
 
   let paper = data;
 
+  console.log(data);
+
   useEffect(() => {
     let newDisplayData = [...paper.experimentalData];
     if (dataType === "titer" && order === "descending") {

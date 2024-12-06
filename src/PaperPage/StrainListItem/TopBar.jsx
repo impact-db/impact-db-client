@@ -1,6 +1,6 @@
 import { HStack, Stack, Text } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { convertToSlug } from "../../Helpers/stringHelpers";
+import { capitalize, convertToSlug } from "../../Helpers/stringHelpers";
 import DeleteStrainButton from "../StrainListItemButtons/DeleteStrainButton";
 import EditStrainButton from "../StrainListItemButtons/EditStrainButton";
 import ControlButtons from "./ControlButtons";
@@ -13,7 +13,7 @@ const TopBar = ({
   creatorLoggedIn,
   onHomePage,
   isLargerThan700,
-  page
+  page,
 }) => {
   let navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const TopBar = ({
     default:
       console.log("unknown data type");
   }
-  
+
   return (
     <Stack
       direction={rowOrCol}
@@ -73,19 +73,16 @@ const TopBar = ({
             onHomePage={onHomePage}
             showDetails={showDetails}
             setShowDetails={setShowDetails}
-            page = {page}
+            page={page}
           />
         )}
       </HStack>
 
       {/* species and strain name */}
-      <HStack
-        // justify={isLargerThan700 ? "flex-end" : "space-between"}
-        justify="space-between"
-        w="100%"
-      >
+      <HStack justify="space-between" w="100%">
         <Text>
-          {strain.species} {strain.parentStrain} {strain.engineeredStrain}
+          {capitalize(strain.species)} {strain.parentStrain}{" "}
+          {strain.engineeredStrain}
         </Text>
 
         {/* button section */}
@@ -100,11 +97,18 @@ const TopBar = ({
           )}
           {page === "product" && (
             <HStack h="20px" w="150px">
-              <Link to={"/paper/" + convertToSlug(strain.species) + "/" + convertToSlug(strain.paperSlug)}>
-              <Text _hover={{ textDecoration: "underline" }}>
-                Link to Paper
-              </Text>
-            </Link>
+              <Link
+                to={
+                  "/paper/" +
+                  convertToSlug(strain.species) +
+                  "/" +
+                  convertToSlug(strain.paperSlug)
+                }
+              >
+                <Text _hover={{ textDecoration: "underline" }}>
+                  Link to Paper
+                </Text>
+              </Link>
             </HStack>
           )}
 
@@ -115,7 +119,7 @@ const TopBar = ({
               onHomePage={onHomePage}
               showDetails={showDetails}
               setShowDetails={setShowDetails}
-              page = {page}
+              page={page}
             />
           )}
         </HStack>

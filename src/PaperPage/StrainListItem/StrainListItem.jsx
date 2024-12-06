@@ -9,7 +9,7 @@ const StrainListItem = ({
   dataType,
   isLargerThan700,
   onHomePage = false,
-  page
+  page,
 }) => {
   const currentUser = useFirebaseAuthentication();
   const [showDetails, setShowDetails] = useState(onHomePage ? true : false);
