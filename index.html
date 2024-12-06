@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<style>
-  /* do not show error message by default */
-  #error-message {
-    display: none;
-  }
-</style>
 
-<script type="module">
-
-  // if there are no credentials then show the error message
-  document.addEventListener("DOMContentLoaded", () => {
-    const errorMessage = document.getElementById('error-message')
-    if (!import.meta.env.VITE_FIREBASE_CONFIG) {
-      errorMessage.style.display = 'inline'
-    }
-  })
-</script>
 
 <head>
+  <style>
+    /* do not show error message by default */
+    #error-message {
+      display: none;
+    }
+  </style>
+
+  <script type="module">
+    // if there are no credentials then show the error message
+    document.addEventListener("DOMContentLoaded", () => {
+      const errorMessage = document.getElementById('error-message')
+      if (!import.meta.env.VITE_FIREBASE_CONFIG) {
+        errorMessage.style.display = 'inline'
+      }
+    })
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
