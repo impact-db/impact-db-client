@@ -2,7 +2,7 @@ import { Heading, Spacer, Text, VStack } from "@chakra-ui/react";
 
 const AboutSection = () => {
   return (
-    <VStack id="about" w="100vw" px="20px" py="40px" align="center">
+    <VStack id="about" w="100%" px="20px" py="40px" align="center">
       <VStack w="100%" maxW="1000px" m="auto" px="20px">
         <Heading textAlign="center">About</Heading>
         <Spacer minH="10px" />

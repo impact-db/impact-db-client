@@ -11,7 +11,7 @@ import DailyStatsChart from "../../ChartPage/DailyStatsChart";
 
 const ChartSection = () => {
   return (
-    <VStack id="about" w="100vw" px="20px" py="40px" align="center">
+    <VStack id="about" w="100%" px="20px" py="40px" align="center">
       <VStack w="100%" maxW="1000px" m="auto" px="20px">
         {/* <Spacer minH="30px" /> */}
         <Heading fontSize="28px" pt="20px" pb="5px" textAlign="center">

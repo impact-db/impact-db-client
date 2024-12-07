@@ -14,7 +14,7 @@ const TitleText = ({ isLargerThan800 }) => {
   const [isLargerThan550] = useMediaQuery("(min-width: 550px)");
   return (
     <Stack
-      w="100vw"
+      w="100%"
       h={isLargerThan800 ? "max(calc(100vh - 80px), 450px)" : "500px"}
       px="20px"
       align="center"

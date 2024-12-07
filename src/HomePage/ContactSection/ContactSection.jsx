@@ -10,7 +10,7 @@ const ContactSection = () => {
   return (
     <VStack
       id="about"
-      w="100vw"
+      w="100%"
       px="20px"
       py="40px"
       align="center"

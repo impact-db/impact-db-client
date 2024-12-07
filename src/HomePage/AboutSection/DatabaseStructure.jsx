@@ -12,7 +12,7 @@ import PaperIcon from "./PaperIcon";
 const DatabaseStructure = ({ isLargerThan800 }) => {
   return (
     <Stack
-      w="100vw"
+      w="100%"
       px="20px"
       py="40px"
       align="center"

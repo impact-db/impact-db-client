@@ -20,7 +20,7 @@ const ApiSection = () => {
 
   return (
     <VStack
-      w="100vw"
+      w="100%"
       px="20px"
       py="40px"
       align="center"

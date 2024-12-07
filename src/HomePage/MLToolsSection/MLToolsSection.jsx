@@ -26,7 +26,7 @@ const MLToolsSection = () => {
   return (
     <VStack
       id="machine-learning"
-      w="100vw"
+      w="100%"
       px="20px"
       py="40px"
       align="center"

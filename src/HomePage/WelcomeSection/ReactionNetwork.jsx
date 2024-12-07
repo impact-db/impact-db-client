@@ -7,7 +7,7 @@ const ReactionNetwork = () => {
     <>
       <Box
         position="absolute"
-        w="100vw"
+        w="100%"
         h={isLargerThan800 ? "100vh" : "580px"}
         top="0px"
         left="0px"
