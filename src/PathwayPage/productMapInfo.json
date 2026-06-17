@@ -1,0 +1,466 @@
+[
+  {
+    "name": "1-butanol",
+    "pathwayMapName": "Butanol",
+    "fullName": "1-Butanol",
+    "isOnPathwayMap": true,
+    "x": 75.5,
+    "y": 31.5
+  },
+  {
+    "name": "1-decanol",
+    "pathwayMapName": "Fatty Alcohols",
+    "fullName": "1-Decanol",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "a-Farnesene",
+    "pathwayMapName": "FPP",
+    "fullName": "α-Farnesene",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "a-Ionone",
+    "pathwayMapName": "Carotenoids",
+    "fullName": "α-Ionone",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "a-Linolenic acid",
+    "pathwayMapName": "a-Linolenic acid",
+    "fullName": "α-Linolenic acid",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "a-Santalene",
+    "pathwayMapName": "FPP",
+    "fullName": "α-Santalene",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Acetate",
+    "pathwayMapName": "Acetate",
+    "fullName": "Acetate",
+    "isOnPathwayMap": true,
+    "x": 46.5,
+    "y": 31.5
+  },
+  {
+    "name": "AKG",
+    "pathwayMapName": "α-KG",
+    "fullName": "α-Ketoglutarate",
+    "isOnPathwayMap": true,
+    "x": 42.55,
+    "y": 49.2
+  },
+  {
+    "name": "Alkanes",
+    "pathwayMapName": "Alkanes",
+    "fullName": "Alkanes",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Amorphadiene",
+    "pathwayMapName": "FPP",
+    "fullName": "Amorphadiene",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Arachidonic acid",
+    "pathwayMapName": "Arachidonic acid",
+    "fullName": "Arachidonic acid",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Arbutin",
+    "pathwayMapName": "Phenylpropanoid pathway",
+    "fullName": "Arbutin",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Astaxanthin",
+    "pathwayMapName": "Astaxanthin",
+    "fullName": "Astaxanthin",
+    "isOnPathwayMap": true,
+    "x": 94.0,
+    "y": 72.8
+  },
+  {
+    "name": "b-Carotene",
+    "pathwayMapName": "beta-Carotene",
+    "fullName": "β-Carotene",
+    "isOnPathwayMap": true,
+    "x": 89.1,
+    "y": 72.8
+  },
+  {
+    "name": "b-Ionone",
+    "pathwayMapName": "Carotenoids",
+    "fullName": "β-Ionone",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Betulin",
+    "pathwayMapName": "Lanosterol / triterpenoid pathway",
+    "fullName": "Betulin",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Betulinic acid",
+    "pathwayMapName": "Lanosterol / triterpenoid pathway",
+    "fullName": "Betulinic acid",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Campersterol",
+    "pathwayMapName": "Campesterol",
+    "fullName": "Campesterol",
+    "isOnPathwayMap": true,
+    "x": 97.5,
+    "y": 49.2
+  },
+  {
+    "name": "Canthaxanthin",
+    "pathwayMapName": "Carotenoids",
+    "fullName": "Canthaxanthin",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Citrate",
+    "pathwayMapName": "CIT",
+    "fullName": "Citrate",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Crotonic acid",
+    "pathwayMapName": "Crotonyl-CoA",
+    "fullName": "Crotonic acid",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Decanoic Acid",
+    "pathwayMapName": "Decanoic Acid",
+    "fullName": "Decanoic acid",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Echinenone",
+    "pathwayMapName": "Carotenoids",
+    "fullName": "Echinenone",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Ergothioneine",
+    "pathwayMapName": "Amino acid pathway",
+    "fullName": "Ergothioneine",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Eriodictyol",
+    "pathwayMapName": "Flavonoids",
+    "fullName": "Eriodictyol",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Erythritol",
+    "pathwayMapName": "Erythritol",
+    "fullName": "Erythritol",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "FAEE",
+    "pathwayMapName": "FAEE",
+    "fullName": "Fatty acid ethyl esters",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Fatty Alcohol",
+    "pathwayMapName": "Fatty Alcohols",
+    "fullName": "Fatty alcohols",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "FFA",
+    "pathwayMapName": "Fatty Acids",
+    "fullName": "Free fatty acids",
+    "isOnPathwayMap": true,
+    "x": 47.8,
+    "y": 48.6
+  },
+  {
+    "name": "Fumarate",
+    "pathwayMapName": "FUM",
+    "fullName": "Fumarate",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Glycogen",
+    "pathwayMapName": "Glycogen",
+    "fullName": "Glycogen",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Hexadecanol",
+    "pathwayMapName": "Fatty Alcohols",
+    "fullName": "Hexadecanol",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Isocitrate",
+    "pathwayMapName": "ICIT",
+    "fullName": "Isocitrate",
+    "isOnPathwayMap": true,
+    "x": 41.1,
+    "y": 40.6
+  },
+  {
+    "name": "LCDCA",
+    "pathwayMapName": "LCDCA",
+    "fullName": "Long-chain dicarboxylic acids",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Limonene",
+    "pathwayMapName": "Limonene",
+    "fullName": "Limonene",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Linalool",
+    "pathwayMapName": "Linalool",
+    "fullName": "Linalool",
+    "isOnPathwayMap": true,
+    "x": 57.1,
+    "y": 47.7
+  },
+  {
+    "name": "Lipids",
+    "pathwayMapName": "Lipids",
+    "fullName": "Lipids",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Lupeol",
+    "pathwayMapName": "Lanosterol / triterpenoid pathway",
+    "fullName": "Lupeol",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Lycopene",
+    "pathwayMapName": "Lycopene",
+    "fullName": "Lycopene",
+    "isOnPathwayMap": true,
+    "x": 78.9,
+    "y": 72.9
+  },
+  {
+    "name": "Malate",
+    "pathwayMapName": "MAL",
+    "fullName": "Malate",
+    "isOnPathwayMap": true,
+    "x": 33.3,
+    "y": 44.3
+  },
+  {
+    "name": "Mannitol",
+    "pathwayMapName": "Mannitol",
+    "fullName": "Mannitol",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Methyl-ketones",
+    "pathwayMapName": "Methyl-ketones",
+    "fullName": "Methyl ketones",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Mevalonate",
+    "pathwayMapName": "Mevalonate",
+    "fullName": "Mevalonate",
+    "isOnPathwayMap": true,
+    "x": 51.5,
+    "y": 44
+  },
+  {
+    "name": "Naringenin",
+    "pathwayMapName": "Flavanones",
+    "fullName": "Naringenin",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Nootkatone",
+    "pathwayMapName": "FPP",
+    "fullName": "Nootkatone",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Octadecanol",
+    "pathwayMapName": "Fatty Alcohols",
+    "fullName": "Octadecanol",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Pentane",
+    "pathwayMapName": "Alkanes",
+    "fullName": "Pentane",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "PHB",
+    "pathwayMapName": "PHB",
+    "fullName": "Polyhydroxybutyrate",
+    "isOnPathwayMap": true,
+    "x": 62.4,
+    "y": 38.9
+  },
+  {
+    "name": "Pregnenolone",
+    "pathwayMapName": "Sterol pathway",
+    "fullName": "Pregnenolone",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Protopanaxadiol",
+    "pathwayMapName": "Triterpenoid pathway",
+    "fullName": "Protopanaxadiol",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Pyruvate",
+    "pathwayMapName": "PYR",
+    "fullName": "Pyruvate",
+    "isOnPathwayMap": true,
+    "x": 37.3,
+    "y": 31.4
+  },
+  {
+    "name": "Reservatrol",
+    "pathwayMapName": "Phenylpropanoid pathway",
+    "fullName": "Resveratrol",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Riboflavin",
+    "pathwayMapName": "Riboflavin",
+    "fullName": "Riboflavin",
+    "isOnPathwayMap": true,
+    "x": 61.0,
+    "y": 7.3
+  },
+  {
+    "name": "Squalene",
+    "pathwayMapName": "Squalene",
+    "fullName": "Squalene",
+    "isOnPathwayMap": true,
+    "x": 66.4,
+    "y": 51
+  },
+  {
+    "name": "Succinate",
+    "pathwayMapName": "SUC",
+    "fullName": "Succinate",
+    "isOnPathwayMap": true,
+    "x": 33.85,
+    "y": 55.0
+  },
+  {
+    "name": "Taxifolin",
+    "pathwayMapName": "Flavonoids",
+    "fullName": "Taxifolin",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Triacetic acid lactone",
+    "pathwayMapName": "Triacetic acid lactone",
+    "fullName": "Triacetic acid lactone",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  },
+  {
+    "name": "Valencene",
+    "pathwayMapName": "FPP",
+    "fullName": "Valencene",
+    "isOnPathwayMap": false,
+    "x": null,
+    "y": null
+  }
+]

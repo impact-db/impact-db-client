@@ -28,10 +28,10 @@ const ContactSection = () => {
         </Text>
         <VStack pt="20px" spacing="0px">
           <Text fontSize="15px" opacity="0.8">
-            Yufei Sun, Jeff Czajka, Mattheos Koffas, Yinjie Tang, Garrett Roell
+            Yufei Sun, Jacob White, Zhengyang Xiao, Garrett Roell
           </Text>
           <Text fontSize="15px" opacity="0.8">
-            2022
+            2026
           </Text>
         </VStack>
       </VStack>

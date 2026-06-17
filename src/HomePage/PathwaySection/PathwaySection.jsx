@@ -7,7 +7,7 @@ import {
   useColorModeValue,
   Image,
 } from "@chakra-ui/react";
-import PathwayMapImage from "./PathwayScreenshot.png";
+import PathwayMapImage from "../../PathwayPage/PathwayMap.png";
 
 const PathwaySection = () => {
   return (

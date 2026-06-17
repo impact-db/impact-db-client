@@ -29,17 +29,16 @@ const ProductListPage = () => {
                 <ArrowBackIcon opacity="0.8" />
                 <Text fontSize="14px" opacity="0.8">
                   Home page
-                  {/* {capitalize(species)} database */}
                 </Text>
               </HStack>
             </Link>
             <ReportIssueButton />
           </HStack>
 
-          <Alert maxW="500px" m="auto" mt="30px">
+          {/* <Alert maxW="500px" m="auto" mt="30px">
             <AlertIcon />
             <AlertTitle>This feature currently under development.</AlertTitle>
-          </Alert>
+          </Alert> */}
           <Heading fontSize="30px" pt="20px" pb="5px">
             Products
           </Heading>

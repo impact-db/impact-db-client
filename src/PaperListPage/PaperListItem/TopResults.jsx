@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const TopResults = ({ paper }) => {
   let greenColor = useColorModeValue(
     "var(--chakra-colors-green-600)",
-    "var(--chakra-colors-green-100)"
+    "var(--chakra-colors-green-100)",
   );
 
   let productResults = {};
