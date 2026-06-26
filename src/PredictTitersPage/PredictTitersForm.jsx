@@ -40,44 +40,42 @@ const PredictTitersForm = () => {
   const [carbonSource, setCarbonSource] = useState("Glucose");
 
   const [carbonSourceMW, setCarbonSourceMW] = useState(
-    carbonSourceInfo["Glucose"]["molecular_weight"]
+    carbonSourceInfo["Glucose"]["molecular_weight"],
   );
   const [carbonSourceHC, setCarbonSourceHC] = useState(
-    carbonSourceInfo["Glucose"]["heat_of_combustion"]
+    carbonSourceInfo["Glucose"]["heat_of_combustion"],
   );
   const [productName, setProductName] = useState("Astaxanthin");
   const [productMW, setProductMW] = useState(
-    productInfo["Astaxanthin"]["molecular_weight"]
+    productInfo["Astaxanthin"]["molecular_weight"],
   );
   const [productDeltaG, setProductDeltaG] = useState(
-    productInfo["Astaxanthin"]["delta_g"]
+    productInfo["Astaxanthin"]["delta_g"],
   );
   const [productATPCost, setProductATPCost] = useState(
-    productInfo["Astaxanthin"]["atp_cost"]
+    productInfo["Astaxanthin"]["atp_cost"],
   );
   const [productNADHCost, setProductNADHCost] = useState(
-    productInfo["Astaxanthin"]["nadh_cost"]
+    productInfo["Astaxanthin"]["nadh_cost"],
   );
   const [productPathwaySteps, setProductPathwaySteps] = useState(
-    productInfo["Astaxanthin"]["pathway_steps"]
+    productInfo["Astaxanthin"]["pathway_steps"],
   );
   const [productPrecursors, setProductPrecursors] = useState(
-    productInfo["Astaxanthin"]["precursors"]
+    productInfo["Astaxanthin"]["precursors"],
   );
   const [productPrecursorCoefficients, setProductPrecursorCoefficients] =
     useState(productInfo["Astaxanthin"]["precursor_coefficients"]);
 
   const [productPrecursorDeltaGs, setProductPrecursorDeltaGs] = useState(
-    productInfo["Astaxanthin"]["precursor_delta_g_values"]
+    productInfo["Astaxanthin"]["precursor_delta_g_values"],
   );
 
   const [media, setMedia] = useState("rich");
   const [pH, setpH] = useState(0);
 
   // variables for genetic background strings
-  const [knockedOutGenes, setKnockedOutGenes] = useState(
-    "YALI0B15598g;YALI0C06369g;YALI0E02684g"
-  );
+  const [knockedOutGenes, setKnockedOutGenes] = useState("YALI0B15598g");
   const [overexpressedGenes, setOverexpressedGenes] = useState("");
   const [heterologousGenes, setHeterologousGenes] = useState("a;b;c");
 
@@ -316,9 +314,9 @@ const PredictTitersForm = () => {
           let url;
 
           if (import.meta.env.MODE === "development") {
-            url = "http://127.0.0.1:8080";
-            // url =
-            //   "https://us-central1-impact-db.cloudfunctions.net/predict_titer_endpoint";
+            // url = "http://127.0.0.1:8080";
+            url =
+              "https://us-central1-impact-db.cloudfunctions.net/predict_titer_endpoint";
           } else {
             url =
               "https://us-central1-impact-db.cloudfunctions.net/predict_titer_endpoint";
